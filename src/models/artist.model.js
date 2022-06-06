@@ -33,7 +33,7 @@ artistSchema.methods.avgRate = async function () {
   songs.forEach((e) => {
     sum += e.rating;
   });
-  this.avgRating = sum / songs.length;
+  this.avgRating = (sum / songs.length).toFixed(1);
   return this.save();
 };
 

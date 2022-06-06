@@ -46,7 +46,7 @@ router.post("/rating", async (req, res) => {
     let rating = (
       (song.rating * song.ratingCount + req.body.rating) /
       (song.ratingCount + 1)
-    ).toFixed(2); // calculate new song rating
+    ).toFixed(1); // calculate new song rating
 
     song.rating = rating;
     song.ratingCount++;
@@ -57,7 +57,12 @@ router.post("/rating", async (req, res) => {
       artist.avgRate(); // update artist average rating
     }
 
-    return res.status(200).send(song); // return song
+    let newRating = {
+      _id: song._id,
+      rating: rating,
+    };
+
+    return res.status(200).send(newRating); // return song
   } catch (e) {
     return res.status(500).send({ message: e.message }); // return error
   }
