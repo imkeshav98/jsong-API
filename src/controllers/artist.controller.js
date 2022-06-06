@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const artists = await Artist.find(); // get all artists
+    const artists = await Artist.find().populate("songs", "name"); // get all artists
     return res.status(200).send(artists); // return artists
   } catch (e) {
     return res.status(500).send({ message: e.message }); // return error

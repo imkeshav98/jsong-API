@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const songs = await Song.find(); // get all songs
+    const songs = await Song.find().populate("artists", "name"); // get all songs
     return res.status(200).send(songs); // return songs
   } catch (e) {
     return res.status(500).send({ message: e.message }); // return error
