@@ -15,7 +15,8 @@ router.post("/", async (req, res) => {
     artists.forEach((e) => {
       Artist.findByIdAndUpdate(e, { $push: { songs: song._id } }).exec(); // add song to artist
     });
-    return res.status(200).send(song); // return song
+    let response = await Song.findById(song._id).populate("artists", "name"); // get song with artists
+    return res.status(200).send(response); // return song
   } catch (e) {
     return res.status(500).send({ message: e.message }); // return error
   }
