@@ -1,5 +1,5 @@
 const express = require("express");
-const { login, register } = require("./controllers/auth.controller");
+const { login, register, token } = require("./controllers/auth.controller");
 const app = express();
 const cors = require("cors");
 
@@ -10,5 +10,6 @@ app.use("/api/artists", require("./controllers/artist.controller")); // artist r
 app.use("/api/songs", require("./controllers/song.controller")); // song routes
 app.post("/register", register); // register user
 app.post("/login", login); // login user
+app.post("/token", token); // get token
 
 module.exports = app;
