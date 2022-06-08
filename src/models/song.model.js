@@ -15,7 +15,7 @@ const songsSchema = new mongoose.Schema({
   },
   spotifyUrl: {
     type: String,
-    required: true,
+    required: false,
   },
   rating: {
     type: Number,
