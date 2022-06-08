@@ -6,7 +6,7 @@
 
 
 
-This is a rest API for getting/postings details of some songs/artists. Its has login/logout functionalities for the user from the token which is generated useing JWT(JSONWEBTOKEN). User Can add Songs/Artists to the database. User can rate songs & the average rating of the song changes accordingly. Also after any changes in the rating of a song. Artists rating of that particular song updated automatically.
+JSONG rest API for getting/posting details of some songs/artists. It has login/logout functionalities for the user from the token, which is generated using JWT(JSONWEBTOKEN). User Can add Songs/Artists to the database. Users can rate songs & the average rating of the song changes accordingly after any changes in the rating of a piece. The Artist's rating of that particular song is also updated automatically based on his song's ratings.
 
 
 ## Tech Stack
