@@ -48,7 +48,7 @@ const login = async (req, res) => {
 const token = async (req, res) => {
   // check token
   try {
-    const token = req.header("Authorization").replace("Bearer ", ""); // get token
+    const token = req.header("Authorization").replace("Bearer", ""); // get token
     const user = jwt.verify(token, process.env.KEY); // verify token
     return res.status(200).send({ user, token }); // return user
   } catch (e) {

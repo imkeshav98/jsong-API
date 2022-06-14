@@ -27,6 +27,10 @@ const songsSchema = new mongoose.Schema({
     required: false,
     default: 0,
   },
+  language: {
+    type: String,
+    required: false,
+  },
   artists: [
     {
       type: mongoose.Schema.Types.ObjectId,
