@@ -31,11 +31,12 @@ const login = async (req, res) => {
       return res.status(400).send({ message: "Wrong Email or Password" }); // if user doesn't exist, return error
     }
 
-    const validPassword = await user.comparePassword(req.body.password); // check if password is valid
+    const match = await user.checkPassword(req.body.password); // check if password matches
 
-    if (!validPassword) {
-      return res.status(400).send({ message: "Wrong Email or Password" }); // if password is invalid, return error
+    if (!match) {
+      return res.status(400).send({ message: "Wrong Email or PassWord" }); // if password doesn't match, return error
     }
+
     const token = generateToken(user); // generate token
 
     return res.status(200).send({ user, token }); // return user and token
