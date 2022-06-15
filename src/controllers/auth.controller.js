@@ -35,8 +35,7 @@ const login = async (req, res) => {
 
     if (!validPassword) {
       return res.status(400).send({ message: "Wrong Email or Password" }); // if password is invalid, return error
-    }
-
+    }\
     const token = generateToken(user); // generate token
 
     return res.status(200).send({ user, token }); // return user and token
