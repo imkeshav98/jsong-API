@@ -29,9 +29,11 @@ router.get("/songs/:id", async (req, res) => {
     const songs = await Artist.findById(req.params.id).populate(
       // get all songs of artist
       "songs",
-      "name"
+      "rating"
     ); // populate songs with name
-    return res.status(200).send({ songs: songs.songs }); // return songs
+    let allSongs = songs.songs;
+    let result = allSongs.sort((a, b) => b.rating - a.rating).splice(0, 2);
+    return res.status(200).send({ songs: result }); // return songs
   } catch (e) {
     return res.status(500).send({ message: e.message }); // return error
   }
