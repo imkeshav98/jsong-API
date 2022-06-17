@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+
 require("dotenv").config();
 
 const generateToken = (user) => {
@@ -31,7 +32,7 @@ const login = async (req, res) => {
       return res.status(400).send({ message: "Wrong Email or Password" }); // if user doesn't exist, return error
     }
 
-    const validPassword = user.comparePassword(req.body.password); // check if password is valid
+    const validPassword = await user.comparePassword(req.body.password); // check if password is valid
 
     if (!validPassword) {
       return res.status(400).send({ message: "Wrong Email or Password" }); // if password is invalid, return error

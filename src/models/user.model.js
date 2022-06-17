@@ -18,14 +18,15 @@ const userSchema = new mongoose.Schema({
   ratedSongs: [],
 });
 
-userSchema.pre("save", function (next) {
-  const hash = bcrypt.hashSync(this.password, 8);
+userSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt(8);
+  const hash = await bcrypt.hash(this.password, salt);
   this.password = hash;
   return next();
 });
 
 userSchema.methods.comparePassword = async function (password) {
-  return await bcrypt.compareSync(new String(password).trim(), this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 const User = mongoose.model("user", userSchema);
